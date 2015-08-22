@@ -6,6 +6,7 @@
 #include <QHeaderView>
 #include <dialog.h>
 #include "FilesToAddListModel.h"
+#include "steghide-src/CvrStgFile.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,10 @@ private slots:
 
     void on_EncodeButton_clicked();
 
+    void on_FilesAndFoldersTreeView_clicked(const QModelIndex &index);
+
+    void update_FreeSpaceProgressBar();
+
 private:
     Ui::MainWindow *ui;
     Dialog     *dialog;
@@ -41,7 +46,7 @@ private:
     QStringList filenames;
     QString sPath;
     QString passphrase;
-
+    CvrStgFile *selected_file;
 };
 
 #endif // MAINWINDOW_H

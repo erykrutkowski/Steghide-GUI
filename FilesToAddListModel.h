@@ -18,9 +18,11 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation,int role = Qt::DisplayRole) const;
     void removeRow(int row, const QModelIndex& parent = QModelIndex());
+    unsigned long get_sum_size();
 
 private:
     std::vector<FilesToAdd> FilesToAdd_;
+    unsigned long sum_size;
 
 };
 

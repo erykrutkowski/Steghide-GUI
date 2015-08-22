@@ -11,7 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->FreeSpaceProgressBar->setFormat("Select file in left section.");
+
     sPath="";
+    selected_file=NULL;
     dirmodel = new QFileSystemModel(this);
     dirmodel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files);
     dirmodel->setNameFilters(QStringList() << "*.jpg" << "*.JPG" << "*.jpeg" << "*.JPEG" << "*.bmp" << "*.BMP" << "*.wav" << "*.WAV" << "*.au" << "*.AU");
@@ -23,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->FileTableView->setModel(filesmodel);
     files_v_header= ui->FileTableView->verticalHeader();
     connect(files_v_header, SIGNAL(sectionClicked(int)), this, SLOT(on_sectionClicked(int)));
-
 }
 
 MainWindow::~MainWindow()
@@ -49,12 +51,13 @@ void MainWindow::on_AddFilesButton_clicked()
     filenames.clear();
     filenames=QFileDialog::getOpenFileNames(this, tr("Open File"), "/", "All files *.*");
     filesmodel->setStringList(filenames);
+    update_FreeSpaceProgressBar();
 }
 
 void MainWindow::on_sectionClicked ( int logicalIndex )
 {
     filesmodel->removeRow(logicalIndex);
-
+    update_FreeSpaceProgressBar();
 }
 
 void MainWindow::on_SettingsButton_clicked()
@@ -78,4 +81,26 @@ void MainWindow::on_HelpButton_clicked()
 void MainWindow::on_EncodeButton_clicked()
 {
     passphrase=QInputDialog::getText(this,"Specify passphrase","Enter passphrase:",QLineEdit::Password);
+}
+
+void MainWindow::on_FilesAndFoldersTreeView_clicked(const QModelIndex &index)
+{
+    if(QFileInfo(dirmodel->filePath(index)).isFile()){
+        selected_file =  CvrStgFile::readFile ((dirmodel->filePath(index)).toUtf8().constData()) ;
+        update_FreeSpaceProgressBar();
+    }
+    else
+    {
+        selected_file = NULL;
+    }
+
+}
+
+void MainWindow::update_FreeSpaceProgressBar(){
+    if(selected_file!=NULL){
+        int temp=((filesmodel->get_sum_size())/(selected_file->getCapacity()))*100;
+        ui->FreeSpaceProgressBar->setValue(temp);
+
+        ui->FreeSpaceProgressBar->setFormat(QString::number(filesmodel->get_sum_size())+" / "+QString::number(selected_file->getCapacity()));
+    }
 }

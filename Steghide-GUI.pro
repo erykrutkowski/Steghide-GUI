@@ -13,10 +13,13 @@ TEMPLATE = app
 
 DEFINES += "USE_LIBJPEG=1"\
            "USE_LIBMCRYPT=1"\
-           "USE_ZLIB=1"\
-           "ULONG_MAX=0xffffffffUL"
+           "USE_ZLIB=1"
 
 QMAKE_CXXFLAGS += -fpermissive
+LIBS += -lz\
+        -lmhash\
+        -lmcrypt\
+        -ljpeg
 
 SOURCES += main.cpp\
         mainwindow.cpp \

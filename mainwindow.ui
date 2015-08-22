@@ -258,7 +258,7 @@
      <number>0</number>
     </property>
     <property name="textVisible">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -298,7 +298,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Carrier audio files:</string>
+     <string>Carrier files:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_1">

@@ -1,6 +1,8 @@
 #include "FilesToAddListModel.h"
 
 FilesToAddListModel::FilesToAddListModel(QStringList filepaths, QObject *parent) : QAbstractListModel(parent) {
+    sum_size=0;
+    filepaths.clear();
     setStringList(filepaths);
 }
 
@@ -8,7 +10,9 @@ void FilesToAddListModel::setStringList(QStringList filepaths, const QModelIndex
     for(int i=0; i<filepaths.size(); i++){
         beginInsertRows(parent, (int)FilesToAdd_.size(), (int)FilesToAdd_.size());
         FilesToAdd_.push_back(FilesToAdd(filepaths.at(i)));
+        sum_size+=FilesToAdd_.back().filesize_byte;
         endInsertRows();
+
     }
 }
 
@@ -55,3 +59,6 @@ void FilesToAddListModel::removeRow(int row, const QModelIndex &parent)
      endRemoveRows();
 }
 
+unsigned long FilesToAddListModel::get_sum_size(){
+    return sum_size;
+}
