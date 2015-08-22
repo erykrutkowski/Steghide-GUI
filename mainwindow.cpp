@@ -85,16 +85,15 @@ void MainWindow::on_EncodeButton_clicked()
 
 void MainWindow::on_FilesAndFoldersTreeView_clicked(const QModelIndex &index)
 {
-    if(ui->FilesAndFoldersTreeView->selectionModel()->selectedIndexes().at(0)==index){
-        if(QFileInfo(dirmodel->filePath(index)).isFile()){
-            selected_file =  CvrStgFile::readFile ((dirmodel->filePath(index)).toUtf8().constData()) ;
-            update_FreeSpaceProgressBar();
-        }
-        else
-        {
-            selected_file = NULL;
-        }
+    if((ui->FilesAndFoldersTreeView->selectionModel()->isSelected(index))&&(QFileInfo(dirmodel->filePath(index)).isFile())){
+        selected_file =  CvrStgFile::readFile ((dirmodel->filePath(index)).toUtf8().constData()) ;
+        update_FreeSpaceProgressBar();
     }
+    else
+    {
+        selected_file = NULL;
+    }
+
 }
 
 void MainWindow::update_FreeSpaceProgressBar(){
