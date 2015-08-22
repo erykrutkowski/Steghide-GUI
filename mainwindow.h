@@ -37,6 +37,8 @@ private slots:
 
     void update_FreeSpaceProgressBar();
 
+    void on_FilesAndFolders_MainPath_returnPressed();
+
 private:
     Ui::MainWindow *ui;
     Dialog     *dialog;
