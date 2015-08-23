@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->FreeSpaceProgressBar->setFormat("Select file in left section.");
-
+    ui->centralWidget->setLayout(ui->gridLayout);
     sPath="";
     selected_file=NULL;
     dirmodel = new QFileSystemModel(this);
