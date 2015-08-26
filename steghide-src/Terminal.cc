@@ -28,7 +28,7 @@
 Terminal::Terminal ()
 {
 	if ((tcgetattr (STDIN_FILENO, &InitAttr)) != 0) {
-		throw SteghideError (_("could not get terminal attributes.")) ;
+        throw SteghideError (_("could not get terminal attributes.")) ;
 	}
 }
 
@@ -50,7 +50,7 @@ void Terminal::SingleKeyOn ()
 {
 	struct termios curattr ;
 	if ((tcgetattr (STDIN_FILENO, &curattr)) != 0) {
-		throw SteghideError (_("could not get terminal attributes.")) ;
+        throw SteghideError (_("could not get terminal attributes.")) ;
 	}
 
 	curattr.c_lflag &= ~ICANON ;
@@ -58,7 +58,7 @@ void Terminal::SingleKeyOn ()
 	curattr.c_cc[VMIN] = 1 ;
 
 	if ((tcsetattr (STDIN_FILENO, TCSAFLUSH, &curattr)) != 0) {
-		throw SteghideError (_("could not set terminal attributes.")) ;
+        throw SteghideError (_("could not set terminal attributes.")) ;
 	}
 }
 

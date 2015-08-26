@@ -5,9 +5,16 @@
 #include <QFileSystemModel>
 #include <QHeaderView>
 #include <dialog.h>
+#include <extractdialog.h>
 #include "FilesToAddListModel.h"
 #include "steghide-src/CvrStgFile.h"
-
+#include "steghide-src/Session.h"
+#include "steghide-src/EmbData.h"
+#include "steghide-src/Extractor.h"
+#include "steghide-src/Selector.h"
+#include "steghide-src/error.h"
+#include "steghide-src/common.h"
+#include "StdRedirection.h"
 namespace Ui {
 class MainWindow;
 }
@@ -38,6 +45,8 @@ private slots:
     void update_FreeSpaceProgressBar();
 
     void on_FilesAndFolders_MainPath_returnPressed();
+
+    void on_ExtractButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -286,6 +286,9 @@
        </item>
        <item row="0" column="2">
         <widget class="QToolButton" name="ExtractButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Extract files</string>
          </property>
@@ -326,6 +329,9 @@
        </item>
        <item row="0" column="3">
         <widget class="QToolButton" name="EncodeButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Encode</string>
          </property>

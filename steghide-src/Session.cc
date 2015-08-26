@@ -291,8 +291,8 @@ void Session::printHelp ()
 		" -p, --passphrase        specify passphrase\n"
 		"   -p <passphrase>       use <passphrase> to get info about embedded data\n"
 
-		"\nTo embed emb.txt in cvr.jpg: steghide embed -cf cvr.jpg -ef emb.txt\n"
-		"To extract embedded data from stg.jpg: steghide extract -sf stg.jpg\n")) ;
+        "\nTo embed emb.txt in cvr.jpg: Steghide-GUI embed -cf cvr.jpg -ef emb.txt\n"
+        "To extract embedded data from stg.jpg: Steghide-GUI extract -sf stg.jpg\n")) ;
 }
 
 void Session::printLicense ()

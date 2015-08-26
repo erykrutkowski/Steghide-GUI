@@ -22,6 +22,7 @@
 #include <list>
 #include <map>
 #include <vector>
+#include <climits>
 
 #include "BitString.h"
 #include "CvrStgFile.h"
@@ -32,7 +33,6 @@
 #include "common.h"
 #include "msg.h"
 #include "wrapper_hash_set.h"
-#include "limits.h"  //ULONG_MAX fix
 
 Graph::Graph (CvrStgFile *cvr, const BitString& emb, Selector& sel)
 {

@@ -13,9 +13,17 @@ TEMPLATE = app
 
 DEFINES += "USE_LIBJPEG=1"\
            "USE_LIBMCRYPT=1"\
-           "USE_ZLIB=1"
+           "USE_ZLIB=1"\
+           "HAVE_CONFIG_H=1"\
+           "_FORTIFY_SOURCE=2"\
+           LOCALEDIR=\\\"/usr/local/share/locale\\\"
 
-QMAKE_CXXFLAGS += -fpermissive
+QMAKE_CC = "/usr/bin/gcc -E"
+QMAKE_CFLAGS        = "-O2 -pipe -fstack-protector-strong -fpermissive --param=ssp-buffer-size=4"
+QMAKE_CXXFLAGS      = "-O2 -pipe -fstack-protector -fpermissive"
+QMAKE_CXX= "/usr/bin/g++"
+QMAKE_LFLAGS        = "-Wl,-O1,--sort-common,--as-needed,-z,relro"
+
 LIBS += -lz\
         -lmhash\
         -lmcrypt\
@@ -77,7 +85,8 @@ SOURCES += main.cpp\
     steghide-src/WavFile.cc \
     steghide-src/WavFormatChunk.cc \
     steghide-src/WavPCMSampleValue.cc \
-    steghide-src/WKSConstructionHeuristic.cc
+    steghide-src/WKSConstructionHeuristic.cc \
+    extractdialog.cpp
 
 HEADERS  += mainwindow.h \
     dialog.h \
@@ -146,10 +155,14 @@ HEADERS  += mainwindow.h \
     steghide-src/WavPCMSampleValue.h \
     steghide-src/WKSConstructionHeuristic.h \
     steghide-src/wrapper_hash_map.h \
-    steghide-src/wrapper_hash_set.h
+    steghide-src/wrapper_hash_set.h \
+    extractdialog.h \
+    config.h \
+    StdRedirection.h
 
 FORMS    += mainwindow.ui \
-    dialog.ui
+    dialog.ui \
+    extractdialog.ui
 
 DISTFILES +=
 
