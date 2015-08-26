@@ -1,0 +1,16 @@
+Steghide-GUI is unofficial graphical frontend for steghide (http://steghide.sourceforge.net/) written in Qt and steghide is a steganography program that is able to hide data in various kinds of image- and audio-files. The color- respectivly sample-frequencies are not changed thus making the embedding resistant against first-order statistical tests. 
+
+HOW TO COMPILE AND INSTALL
+To generate makefile just create folder where you wants to build and use command:
+	qmake -spec linux-g++ -o Makefile ../Steghide-GUI/Steghide-GUI.pro
+Where last path it's path to .pro file from Steghide-GUI source;
+
+After you generate makefile just type:
+	make
+to build it and get compiled Steghide-GUI binary (Run ./Steghide-GUI).
+
+If you want to install Steghide-GUI via 'make install' after 'make' command add this lines in *.pro files and repeat all commands listed above (in this example install path will be /usr/local/bin/):
+	target.path = /usr/local/bin/
+	INSTALLS += target
+
+LAZY WAY: Just install QT Creator and open .pro file ;)
